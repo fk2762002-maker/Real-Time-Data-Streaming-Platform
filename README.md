@@ -172,6 +172,8 @@ The Power BI dashboard enables:
 * Currency-based analytics
 * Key performance indicators (KPIs)
 * Interactive filtering & insights
+  
+<img width="1143" height="682" alt="Power BI" src="https://github.com/user-attachments/assets/1b1b5cad-3db4-4c63-a170-72db926f4ee1" />
 
 ---
 
@@ -220,9 +222,7 @@ The Power BI dashboard enables:
 
 ##  Authors
 
-**Eman Abdelnaby & Sara El-Damarany**
-
-Data Engineering practitioners passionate about building scalable real-time data platforms and distributed analytics systems.
+**Fatma Khalid & Wesam Sabry**
 
 ---
 
