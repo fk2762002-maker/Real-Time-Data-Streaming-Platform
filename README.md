@@ -229,4 +229,3 @@ Data Engineering practitioners passionate about building scalable real-time data
 ##  Project Objective
 
 To simulate a production-grade real-time streaming platform that demonstrates modern data engineering architecture, distributed processing, and scalable analytics design.
-قولي 👍
