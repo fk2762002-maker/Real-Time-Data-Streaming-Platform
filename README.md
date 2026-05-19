@@ -1,31 +1,29 @@
 #  Real-Time Data Streaming Platform
 
-An **end-to-end real-time data engineering platform** designed to simulate and process high-volume transactional data using modern distributed systems and streaming technologies.
+An end-to-end **real-time data engineering platform** designed to simulate high-volume transactional data processing using modern distributed systems and streaming technologies.
 
-The project demonstrates a production-like data pipeline that covers ingestion, stream processing, distributed storage, analytics, and visualization.
+This project demonstrates a **production-like data pipeline** covering ingestion, stream processing, distributed storage, analytics, and interactive visualization.
 
 ---
 
 ##  Overview
 
-This system simulates a real-time event-driven architecture where data flows continuously through multiple distributed layers:
+This system simulates a real-time event-driven architecture where data continuously flows through multiple distributed layers:
 
-* Real-time data generation using a Python-based producer
+* Data generation using a Python-based producer
 * High-throughput event streaming via Apache Kafka
-* Distributed stream processing using Spark Structured Streaming
+* Real-time stream processing using Apache Spark Structured Streaming
 * Scalable storage in Hadoop HDFS using Parquet format
-* SQL-based analytics layer using Apache Hive
-* Interactive business dashboards using Power BI
+* SQL-based analytics using Apache Hive
+* Business intelligence dashboards using Power BI
 
 ---
 
-## System Architecture
+##  System Architecture
 
-The following diagram illustrates the end-to-end architecture of the real-time data streaming pipeline, showing how data flows across ingestion, processing, storage, analytics, and visualization layers.
+The diagram below illustrates the end-to-end data flow across all system components, from ingestion to visualization.
 
-
-<img width="1829" height="860" alt="image" src="https://github.com/user-attachments/assets/7e3cd2e7-1555-4418-9fc4-91083087bfa9" />
-
+<img width="1829" height="860" alt="architecture" src="https://github.com/user-attachments/assets/7e3cd2e7-1555-4418-9fc4-91083087bfa9" />
 
 <p align="center">
   <em>Figure 1: Real-Time Event-Driven Data Engineering Architecture</em>
@@ -33,60 +31,43 @@ The following diagram illustrates the end-to-end architecture of the real-time d
 
 ---
 
-##  System Architecture
+##  Architecture Flow
 
 ```
-                 ┌──────────────────┐
-                 │  Python Producer │
-                 └────────┬─────────┘
-                          │
-                          ▼
-                 ┌──────────────────┐
-                 │ Apache Kafka     │
-                 │ (Event Streaming)│
-                 └────────┬─────────┘
-                          │
-                          ▼
-        ┌────────────────────────────────┐
-        │ Spark Structured Streaming     │
-        │ (Real-time Processing Layer)   │
-        └────────┬───────────────────────┘
-                 │
-                 ▼
-        ┌────────────────────────┐
-        │ Hadoop HDFS           │
-        │ (Parquet Storage)     │
-        └────────┬──────────────┘
-                 │
-                 ▼
-        ┌────────────────────────┐
-        │ Apache Hive           │
-        │ (Analytics Layer)     │
-        └────────┬──────────────┘
-                 │
-                 ▼
-        ┌────────────────────────┐
-        │ Power BI Dashboard    │
-        │ (Visualization Layer) │
-        └────────────────────────┘
+Python Producer
+      │
+      ▼
+Apache Kafka (Event Streaming)
+      │
+      ▼
+Spark Structured Streaming (Processing Layer)
+      │
+      ▼
+Hadoop HDFS (Parquet Storage)
+      │
+      ▼
+Apache Hive (Analytics Layer)
+      │
+      ▼
+Power BI (Visualization Layer)
 ```
 
 ---
 
 ##  Tech Stack
 
-This project leverages a modern big data ecosystem:
+Modern big data ecosystem technologies used in this project:
 
-* Python (Data Simulation & Scripting)
-* Apache Kafka (Distributed Event Streaming)
-* Apache Spark Structured Streaming (Real-Time Processing)
-* Hadoop HDFS (Distributed Storage Layer)
-* Apache Hive (Data Warehousing & SQL Analytics)
-* Apache HBase (Low-latency NoSQL access)
-* Apache Airflow (Workflow Orchestration – extensible)
-* Docker (Containerized Environment)
-* Power BI (Business Intelligence & Visualization)
-* Parquet (Optimized Columnar Storage)
+* Python (Data simulation & automation)
+* Apache Kafka (Distributed event streaming)
+* Apache Spark Structured Streaming (Real-time processing)
+* Hadoop HDFS (Distributed storage layer)
+* Apache Hive (Data warehousing & SQL analytics)
+* Apache HBase (Low-latency NoSQL storage)
+* Apache Airflow (Workflow orchestration – extensible)
+* Docker (Containerized deployment)
+* Power BI (Business intelligence & visualization)
+* Parquet (Optimized columnar storage format)
 
 ---
 
@@ -95,13 +76,13 @@ This project leverages a modern big data ecosystem:
 ```
 Real-Time-Data-Streaming-Platform/
 │
-├── producer/               # Kafka data generator
+├── producer/              # Kafka data generator
 ├── streaming/             # Spark streaming jobs
-├── transformation/        # Data transformation logic
+├── transformation/        # Data processing logic
 │
-├── screenshots/           # Architecture & outputs
+├── screenshots/           # Architecture & dashboard images
 │
-├── docker-compose.yml     # Multi-service environment
+├── docker-compose.yml     # Multi-service environment setup
 ├── requirements.txt       # Python dependencies
 └── README.md
 ```
@@ -110,13 +91,13 @@ Real-Time-Data-Streaming-Platform/
 
 ##  Deployment (Docker)
 
-### Start all services
+### Start the platform
 
 ```bash
 docker-compose up -d
 ```
 
-### Stop services
+### Stop the platform
 
 ```bash
 docker-compose down
@@ -130,15 +111,15 @@ docker-compose down
 
 ```bash
 kafka-topics --create \
---topic transaction \
---bootstrap-server localhost:9092
+  --topic transaction \
+  --bootstrap-server localhost:9092
 ```
 
 ---
 
 ##  Run the Pipeline
 
-### 1. Start Producer
+### 1. Start Data Producer
 
 ```bash
 python producer.py
@@ -168,7 +149,7 @@ STORED AS PARQUET
 LOCATION '/data/raw/transactions_parquet';
 ```
 
-### Analytical Query
+### Example Analytical Query
 
 ```sql
 SELECT currency, COUNT(*) AS total_transactions
@@ -178,39 +159,39 @@ GROUP BY currency;
 
 ---
 
-## Visualization Layer (Power BI)
+##  Visualization (Power BI)
 
-The Power BI dashboard enables:
+The dashboard provides:
 
 * Real-time transaction monitoring
 * Currency-based analytics
 * Key performance indicators (KPIs)
-* Interactive filtering & insights
-  
-<img width="1143" height="682" alt="Power BI" src="https://github.com/user-attachments/assets/1b1b5cad-3db4-4c63-a170-72db926f4ee1" />
+* Interactive filtering and insights
+
+<img width="1143" height="682" alt="powerbi" src="https://github.com/user-attachments/assets/1b1b5cad-3db4-4c63-a170-72db926f4ee1" />
 
 ---
 
 ##  Key Features
 
-* End-to-end real-time streaming architecture
-* Event-driven distributed system design
-* Scalable ETL / ELT pipeline
+* End-to-end real-time streaming pipeline
+* Event-driven distributed architecture
+* Scalable ETL/ELT processing design
 * Columnar storage optimization (Parquet)
-* SQL-based analytical layer
+* SQL-based analytics layer
 * Interactive BI dashboards
-* Fully containerized infrastructure
+* Fully containerized environment
 
 ---
 
-##  Core Concepts
+## Core Concepts
 
 * Event-Driven Architecture
 * Distributed Systems Design
 * Stream Processing (Real-Time Analytics)
 * Data Lake Architecture
 * Big Data Engineering Pipelines
-* ETL / ELT Processing Models
+* ETL / ELT Patterns
 
 ---
 
@@ -225,11 +206,11 @@ The Power BI dashboard enables:
 
 ##  Future Enhancements
 
-* Apache Airflow orchestration for pipeline scheduling
+* Apache Airflow orchestration layer
 * Kubernetes deployment for scalability
 * Grafana monitoring & observability
 * Cloud deployment (AWS / Azure)
-* Data quality & validation layer
+* Data quality validation layer
 * CI/CD pipeline integration
 
 ---
@@ -242,4 +223,4 @@ The Power BI dashboard enables:
 
 ##  Project Objective
 
-To simulate a production-grade real-time streaming platform that demonstrates modern data engineering architecture, distributed processing, and scalable analytics design.
+To simulate a production-grade real-time streaming platform demonstrating modern data engineering architecture, distributed processing, and scalable analytics design.
