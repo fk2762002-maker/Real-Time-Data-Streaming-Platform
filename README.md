@@ -19,6 +19,20 @@ This system simulates a real-time event-driven architecture where data flows con
 
 ---
 
+## System Architecture
+
+The following diagram illustrates the end-to-end architecture of the real-time data streaming pipeline, showing how data flows across ingestion, processing, storage, analytics, and visualization layers.
+
+<p align="center">
+  <img src="screenshots/Architecture.png" alt="Architecture Diagram" width="1000"/>
+</p>
+
+<p align="center">
+  <em>Figure 1: Real-Time Event-Driven Data Engineering Architecture</em>
+</p>
+
+---
+
 ##  System Architecture
 
 ```
