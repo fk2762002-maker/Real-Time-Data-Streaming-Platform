@@ -29,6 +29,8 @@ The diagram below illustrates the end-to-end data flow across all system compone
   <em>Figure 1: Real-Time Event-Driven Data Engineering Architecture</em>
 </p>
 
+> **Note:** HBase and Airflow appear in the diagram as planned extensions (see Future Enhancements). The current implementation covers Kafka → Spark Structured Streaming → HDFS (Parquet) → Hive → Power BI.
+
 ---
 
 ##  Architecture Flow
@@ -63,8 +65,7 @@ Modern big data ecosystem technologies used in this project:
 * Apache Spark Structured Streaming (Real-time processing)
 * Hadoop HDFS (Distributed storage layer)
 * Apache Hive (Data warehousing & SQL analytics)
-* Apache HBase (Low-latency NoSQL storage)
-* Apache Airflow (Workflow orchestration – extensible)
+* Apache Zookeeper (Kafka coordination)
 * Docker (Containerized deployment)
 * Power BI (Business intelligence & visualization)
 * Parquet (Optimized columnar storage format)
@@ -76,11 +77,14 @@ Modern big data ecosystem technologies used in this project:
 ```
 Real-Time-Data-Streaming-Platform/
 │
-├── producer/              # Kafka data generator
-├── streaming/             # Spark streaming jobs
-├── transformation/        # Data processing logic
+├── producer/
+│   └── producer.py        # Python Kafka producer (simulated transactions)
+├── Spark_streaming/
+│   └── spark_streaming.py # Kafka → Spark Structured Streaming → HDFS (Parquet)
+├── Transformation/
+│   └── transform.py       # Batch cleaning: CSV → Parquet
 │
-├── screenshots/           # Architecture & dashboard images
+├── screenshots/           # Architecture, HDFS, Hive & dashboard images
 │
 ├── docker-compose.yml     # Multi-service environment setup
 ├── requirements.txt       # Python dependencies
@@ -90,6 +94,12 @@ Real-Time-Data-Streaming-Platform/
 ---
 
 ##  Deployment (Docker)
+
+### Install Python dependencies
+
+```bash
+pip install -r requirements.txt
+```
 
 ### Start the platform
 
@@ -122,14 +132,18 @@ kafka-topics --create \
 ### 1. Start Data Producer
 
 ```bash
-python producer.py
+python producer/producer.py
 ```
 
 ### 2. Start Spark Streaming Job
 
 ```bash
-spark-submit spark_streaming.py
+spark-submit \
+  --packages org.apache.spark:spark-sql-kafka-0-10_2.12:3.0.0 \
+  Spark_streaming/spark_streaming.py
 ```
+
+The job writes Parquet files to `hdfs://namenode:9000/data/raw/transactions_parquet` and stores its checkpoint in `/data/checkpoints/streaming_to_parquet`, so the stream resumes from the last processed offset after a restart.
 
 ---
 
